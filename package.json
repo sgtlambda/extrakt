@@ -1,0 +1,50 @@
+{
+  "name": "nmb",
+  "version": "0.0.0",
+  "description": "Extract .tar using the system's binary (fast!), with a javascript fallback (portable!)",
+  "license": "MIT",
+  "repository": "jmversteeg/nmb",
+  "author": {
+    "name": "JM Versteeg",
+    "email": "janmerijnversteeg@gmail.com",
+    "url": "github.com/jmversteeg"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "pretest": "eslint index.js && eslint test.js",
+    "test": "mocha test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "tar",
+    "extract",
+    "fast",
+    "promise"
+  ],
+  "dependencies": {
+    "execa": "^0.1.1",
+    "fstream": "^1.0.8",
+    "gunzip-maybe": "^1.2.1",
+    "hasbin": "^1.1.3",
+    "mkdirp": "^0.5.1",
+    "pify": "^2.3.0",
+    "tar-fs": "^1.9.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.2.0",
+    "coveralls": "^2.11.6",
+    "del": "^2.2.0",
+    "eslint": "^1.10.3",
+    "istanbul": "^0.4.1",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.4",
+    "rewire": "^2.5.1",
+    "sinon": "^1.17.2",
+    "sinon-chai": "^2.8.0"
+  }
+}
