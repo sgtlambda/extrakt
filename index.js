@@ -1,14 +1,14 @@
 'use strict';
 
 const gunzipMaybe = require('gunzip-maybe');
-const execa       = require('execa');
-const tar         = require('tar-fs');
 const fstream     = require('fstream');
 const mkdirp      = require('mkdirp');
 const pify        = require('pify');
 
 // rewired in test
 let which = pify(require('which'));
+let execa = require('execa');
+let tar   = require('tar-fs');
 
 const extrakt = function (archive, extractTo) {
     return which('tar')
