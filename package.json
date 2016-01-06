@@ -26,7 +26,7 @@
     "promise"
   ],
   "dependencies": {
-    "execa": "^0.1.1",
+    "child-process-promise": "^1.1.0",
     "fstream": "^1.0.8",
     "gunzip-maybe": "^1.2.1",
     "mkdirp": "^0.5.1",

@@ -82,17 +82,17 @@ describe('extrakt', () => {
     });
     describe('.system', () => {
         let revert;
-        let execaSpy  = sinon.spy();
+        let execSpy   = sinon.spy();
         let whichStub = sinon.stub();
         before(() => revert = extrakt.__set__({
-            'execa': execaSpy,
+            'exec':  execSpy,
             'which': whichStub
         }));
         after(() => revert());
         it('should issue the right command', () => {
             whichStub.withArgs('tar').resolves('/path/to/tar');
             return extrakt.system('test/archive.tar.gz', 'test/extract').then(() => {
-                execaSpy.should.have.been.calledWith('/path/to/tar', ['-xvf', 'test/archive.tar.gz', '-C', 'test/extract']);
+                execSpy.should.have.been.calledWith(['/path/to/tar', '-xvf', 'test/archive.tar.gz', '-C', 'test/extract'].join(' '));
             });
         });
     });

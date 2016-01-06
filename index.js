@@ -7,7 +7,7 @@ const mkdirp      = pify(require('mkdirp'));
 
 // rewired in test
 let which = pify(require('which'));
-let execa = require('execa');
+let exec  = require('child-process-promise').exec;
 let tar   = require('tar-fs');
 
 const extrakt = function (archive, extractTo) {
@@ -23,7 +23,7 @@ extrakt.system = function (archive, extractTo) {
             which('tar'),
             mkdirp(extractTo)
         ])
-        .then(values => execa(values[0], ['-xvf', archive, '-C', extractTo]));
+        .then(values => exec([values[0], '-xvf', archive, '-C', extractTo].join(' ')));
 };
 
 extrakt.native = function (archive, extractTo) {
