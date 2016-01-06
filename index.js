@@ -2,8 +2,8 @@
 
 const gunzipMaybe = require('gunzip-maybe');
 const fstream     = require('fstream');
-const mkdirp      = require('mkdirp');
 const pify        = require('pify');
+const mkdirp      = pify(require('mkdirp'));
 
 // rewired in test
 let which = pify(require('which'));
@@ -19,8 +19,11 @@ const extrakt = function (archive, extractTo) {
 };
 
 extrakt.system = function (archive, extractTo) {
-    return pify(mkdirp)(extractTo)
-        .then(() => execa.shell(['tar', '-xvf', archive, '-C', extractTo].join(' ')));
+    return Promise.all([
+            which('tar'),
+            mkdirp(extractTo)
+        ])
+        .then(values => execa.shell([values[0], '-xvf', archive, '-C', extractTo].join(' ')));
 };
 
 extrakt.native = function (archive, extractTo) {
