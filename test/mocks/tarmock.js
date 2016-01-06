@@ -8,7 +8,7 @@ module.exports = tarExtract => {
             tarExtract(dest);
             let ee    = new WritableStream();
             ee._write = () => true;
-            setTimeout(() => ee.emit('finish'), 50);
+            setTimeout(() => ee.emit('finish'), 0);
             return ee;
         }
     };

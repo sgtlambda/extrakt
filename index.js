@@ -23,7 +23,7 @@ extrakt.system = function (archive, extractTo) {
             which('tar'),
             mkdirp(extractTo)
         ])
-        .then(values => execa.shell([values[0], '-xvf', archive, '-C', extractTo].join(' ')));
+        .then(values => execa(values[0], ['-xvf', archive, '-C', extractTo]));
 };
 
 extrakt.native = function (archive, extractTo) {
