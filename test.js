@@ -5,6 +5,8 @@ const sinon          = require('sinon');
 const sinonChai      = require('sinon-chai');
 const chaiAsPromised = require('chai-as-promised');
 
+require('sinon-as-promised');
+
 chai.use(chaiAsPromised);
 chai.use(sinonChai);
 
@@ -45,14 +47,14 @@ describe('extrakt', () => {
             revert();
         });
         it('should invoke .system() if tar is found in PATH', () => {
-            whichStub.withArgs('tar').returns(Promise.resolve('/path/to/tar'));
+            whichStub.withArgs('tar').resolves('/path/to/tar');
             return extrakt('test/archive.tar', 'test/extract').then(() => {
                 extrakt.system.should.have.been.called;
                 extrakt.native.should.have.not.been.called;
             });
         });
         it('should invoke .native() if tar is not found in PATH', () => {
-            whichStub.withArgs('tar').returns(Promise.reject(new Error('tar not found in path')));
+            whichStub.withArgs('tar').rejects(new Error('tar not found in path'));
             return extrakt('test/archive.tar', 'test/extract').then(() => {
                 extrakt.native.should.have.been.called;
                 extrakt.system.should.have.not.been.called;
@@ -88,7 +90,7 @@ describe('extrakt', () => {
         }));
         after(() => revert());
         it('should issue the right command', () => {
-            whichStub.withArgs('tar').returns(Promise.resolve('/path/to/tar'));
+            whichStub.withArgs('tar').resolves('/path/to/tar');
             return extrakt.system('test/archive.tar.gz', 'test/extract').then(() => {
                 execaShell.should.have.been.calledWith('/path/to/tar -xvf test/archive.tar.gz -C test/extract');
             });
