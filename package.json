@@ -1,7 +1,7 @@
 {
   "name": "nmb",
   "version": "0.0.0",
-  "description": "Extract .tar using the system's binary (fast!), with a javascript fallback (portable!)",
+  "description": "Extract .tar and .tar.gz using the system's binary (fast!), with a javascript fallback (portable!)",
   "license": "MIT",
   "repository": "jmversteeg/nmb",
   "author": {
