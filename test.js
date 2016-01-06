@@ -40,14 +40,14 @@ describe('extrakt', () => {
             extrakt.native.restore();
         });
         it('should invoke .system() if tar is found in PATH', () => {
-            extrakt.__set__('hasbin', (binary, callback) => callback(true));
+            extrakt.__set__('which', () => Promise.resolve());
             return extrakt('test/archive.tar', 'test/extract').then(() => {
                 extrakt.system.should.have.been.called;
                 extrakt.native.should.have.not.been.called;
             });
         });
         it('should invoke .native() if tar is not found in PATH', () => {
-            extrakt.__set__('hasbin', (binary, callback) => callback(false));
+            extrakt.__set__('which', () => Promise.reject());
             return extrakt('test/archive.tar', 'test/extract').then(() => {
                 extrakt.native.should.have.been.called;
                 extrakt.system.should.have.not.been.called;

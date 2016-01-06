@@ -1,8 +1,5 @@
 'use strict';
 
-// rewired in test
-let hasbin = require('hasbin');
-
 const gunzipMaybe = require('gunzip-maybe');
 const execa       = require('execa');
 const tar         = require('tar-fs');
@@ -10,12 +7,15 @@ const fstream     = require('fstream');
 const mkdirp      = require('mkdirp');
 const pify        = require('pify');
 
-const hasbinAsPromised = binary => new Promise((resolve) => hasbin(binary, resolve));
+// rewired in test
+let which = pify(require('which'));
 
 const extrakt = function (archive, extractTo) {
-    return hasbinAsPromised('tar').then(hasTar => {
-        return hasTar ? extrakt.system(archive, extractTo) : extrakt.native(archive, extractTo);
-    });
+    return which('tar')
+        .then(() => true, () => false)
+        .then(hasTar => {
+            return hasTar ? extrakt.system(archive, extractTo) : extrakt.native(archive, extractTo);
+        });
 };
 
 extrakt.system = function (archive, extractTo) {
