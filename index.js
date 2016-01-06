@@ -10,9 +10,7 @@ const fstream     = require('fstream');
 const mkdirp      = require('mkdirp');
 const pify        = require('pify');
 
-const hasbinAsPromised = binary => new Promise((resolve) => {
-    return hasbin(binary, resolve);
-});
+const hasbinAsPromised = binary => new Promise((resolve) => hasbin(binary, resolve));
 
 const extrakt = function (archive, extractTo) {
     return hasbinAsPromised('tar').then(hasTar => {
