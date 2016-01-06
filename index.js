@@ -19,11 +19,7 @@ const extrakt = function (archive, extractTo) {
 };
 
 extrakt.system = function (archive, extractTo) {
-    return Promise.all([
-            which('tar'),
-            mkdirp(extractTo)
-        ])
-        .then(values => exec([values[0], '-xvf', archive, '-C', extractTo].join(' ')));
+    return mkdirp(extractTo).then(() => exec(['tar', '-xvf', archive, '-C', extractTo].join(' ')));
 };
 
 extrakt.native = function (archive, extractTo) {
