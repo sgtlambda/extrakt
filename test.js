@@ -13,7 +13,6 @@ chai.should();
 const _       = require('lodash');
 const fs      = require('fs');
 const del     = require('del');
-const util    = require('util');
 const rewire  = require('rewire');
 const tarMock = require('./test/mocks/tarmock');
 
