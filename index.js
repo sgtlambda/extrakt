@@ -20,7 +20,7 @@ const extrakt = function (archive, extractTo) {
 
 extrakt.system = function (archive, extractTo) {
     return pify(mkdirp)(extractTo)
-        .then(() => execa('tar', ['-xvf', archive, '-C', extractTo]));
+        .then(() => execa.shell(['tar', '-xvf', archive, '-C', extractTo].join(' ')));
 };
 
 extrakt.native = function (archive, extractTo) {
