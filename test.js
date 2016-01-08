@@ -35,11 +35,11 @@ describe('extrakt', () => {
     });
     describe('cross-platform compatibility', () => {
         let revert;
-        let whichStub = sinon.stub();
+        let hasBinaryTar = sinon.stub();
         beforeEach(() => {
             sinon.stub(extrakt, 'system');
             sinon.stub(extrakt, 'native');
-            revert = extrakt.__set__('which', whichStub);
+            revert = extrakt.__set__('hasBinaryTar', hasBinaryTar);
         });
         afterEach(() => {
             extrakt.system.restore();
@@ -47,14 +47,14 @@ describe('extrakt', () => {
             revert();
         });
         it('should invoke .system() if tar is found in PATH', () => {
-            whichStub.withArgs('tar').resolves('/path/to/tar');
+            hasBinaryTar.resolves('/path/to/tar');
             return extrakt('test/archive.tar', 'test/extract').then(() => {
                 extrakt.system.should.have.been.called;
                 extrakt.native.should.have.not.been.called;
             });
         });
         it('should invoke .native() if tar is not found in PATH', () => {
-            whichStub.withArgs('tar').rejects(new Error('tar not found in path'));
+            hasBinaryTar.rejects(new Error('tar not found in path'));
             return extrakt('test/archive.tar', 'test/extract').then(() => {
                 extrakt.native.should.have.been.called;
                 extrakt.system.should.have.not.been.called;

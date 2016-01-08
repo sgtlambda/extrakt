@@ -4,14 +4,20 @@ const gunzipMaybe = require('gunzip-maybe');
 const fstream     = require('fstream');
 const pify        = require('pify');
 const mkdirp      = pify(require('mkdirp'));
+const which       = pify(require('which'));
 
 // rewired in test
-let which = pify(require('which'));
-let exec  = require('child-process-promise').exec;
-let tar   = require('tar-fs');
+let exec = require('child-process-promise').exec;
+let tar  = require('tar-fs');
+
+let hasBinaryTar = function () {
+    if (process.platform === 'win32')
+        return Promise.reject();
+    else return which('tar');
+};
 
 const extrakt = function (archive, extractTo) {
-    return which('tar')
+    return hasBinaryTar()
         .then(() => true, () => false)
         .then(hasTar => {
             return hasTar ? extrakt.system(archive, extractTo) : extrakt.native(archive, extractTo);
