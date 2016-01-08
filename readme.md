@@ -3,6 +3,7 @@
 > Extract .tar and .tar.gz using the system's binary (fast!), with a javascript fallback (portable!)
 
 [![Build Status][travis-image]][travis-url]
+[![Build Status (Windows)][appveyor-image]][appveyor-url]
 [![Code Quality][codeclimate-image]][codeclimate-url]
 [![Code Coverage][coveralls-image]][coveralls-url]
 [![NPM Version][npm-image]][npm-url]
@@ -51,6 +52,9 @@ MIT © [JM Versteeg](http://github.com/jmversteeg)
 
 [travis-image]: https://img.shields.io/travis/jmversteeg/extrakt.svg?style=flat-square
 [travis-url]: https://travis-ci.org/jmversteeg/extrakt
+
+[appveyor-image]: https://img.shields.io/appveyor/ci/jmversteeg/extrakt.svg?style=flat-square&label=build+(Windows)
+[appveyor-url]: https://ci.appveyor.com/project/jmversteeg/extrakt
 
 [codeclimate-image]: https://img.shields.io/codeclimate/github/jmversteeg/extrakt.svg?style=flat-square
 [codeclimate-url]: https://codeclimate.com/github/jmversteeg/extrakt
