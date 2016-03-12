@@ -4,11 +4,11 @@ const gunzipMaybe = require('gunzip-maybe');
 const fstream     = require('fstream');
 const pify        = require('pify');
 const mkdirp      = pify(require('mkdirp'));
-const which       = pify(require('which'));
 
 // rewired in test
-let exec = require('child-process-promise').exec;
-let tar  = require('tar-fs');
+let which = pify(require('which'));
+let execa = require('execa');
+let tar   = require('tar-fs');
 
 let hasBinaryTar = function () {
     if (process.platform === 'win32')
@@ -16,6 +16,12 @@ let hasBinaryTar = function () {
     else return which('tar');
 };
 
+/**
+ * Extract using built-in tar binary with the node.js implementation as a fallback
+ * @param {string} archive
+ * @param {string} extractTo
+ * @returns {Promise.<T>}
+ */
 const extrakt = function (archive, extractTo) {
     return hasBinaryTar()
         .then(() => true, () => false)
@@ -24,10 +30,22 @@ const extrakt = function (archive, extractTo) {
         });
 };
 
+/**
+ * Extract using the system's built-in tar binary
+ * @param {string} archive
+ * @param {string} extractTo
+ * @returns {Promise}
+ */
 extrakt.system = function (archive, extractTo) {
-    return mkdirp(extractTo).then(() => exec(['tar', '-xvf', archive, '-C', extractTo].join(' ')));
+    return mkdirp(extractTo).then(() => execa('tar', ['-xvf', archive, '-C', extractTo]));
 };
 
+/**
+ * Extract using the tar-fs module
+ * @param {string} archive
+ * @param {string} extractTo
+ * @returns {Promise}
+ */
 extrakt.native = function (archive, extractTo) {
     let extract = tar.extract(extractTo);
     fstream
