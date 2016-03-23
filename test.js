@@ -22,7 +22,7 @@ const extrakt = rewire('./');
 
 const verifyExtraction = () => {
     _.forEach([
-        'index.js',
+        'lib/index.js',
         'package.json',
         'readme.md',
         'test.js'
@@ -30,9 +30,7 @@ const verifyExtraction = () => {
 };
 
 describe('extrakt', () => {
-    afterEach(() => {
-        return del('test/extract');
-    });
+    afterEach(() => del('test/extract'));
     describe('cross-platform compatibility', () => {
         let revert;
         let hasBinaryTar = sinon.stub();
