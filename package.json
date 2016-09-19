@@ -1,6 +1,6 @@
 {
   "name": "extrakt",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Extract .tar and .tar.gz using the system's binary (fast!), with a javascript fallback (portable!)",
   "license": "MIT",
   "repository": "jmversteeg/extrakt",
