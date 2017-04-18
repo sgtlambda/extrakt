@@ -3,11 +3,11 @@
   "version": "0.1.2",
   "description": "Extract .tar and .tar.gz using the system's binary (fast!), with a javascript fallback (portable!)",
   "license": "MIT",
-  "repository": "jmversteeg/extrakt",
+  "repository": "sgtlambda/extrakt",
   "author": {
     "name": "JM Versteeg",
     "email": "janmerijnversteeg@gmail.com",
-    "url": "github.com/jmversteeg"
+    "url": "github.com/sgtlambda"
   },
   "engines": {
     "node": ">=4"
