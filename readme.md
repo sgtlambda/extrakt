@@ -3,8 +3,8 @@
 > Extract .tar and .tar.gz using the system's binary (fast!), with a javascript fallback (portable!)
 
 [![Build Status][travis-image]][travis-url]
-#[![Code Quality][codeclimate-image]][codeclimate-url]
-#[![Code Coverage][coveralls-image]][coveralls-url]
+[![Code Quality][codeclimate-image]][codeclimate-url]
+[![Code Coverage][coveralls-image]][coveralls-url]
 [![NPM Version][npm-image]][npm-url]
 
 
