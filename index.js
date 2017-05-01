@@ -4,6 +4,7 @@ const gunzipMaybe = require('gunzip-maybe');
 const fstream     = require('fstream');
 const pify        = require('pify');
 const pathExists  = require('path-exists');
+const mem         = require('mem');
 const mkdirp      = pify(require('mkdirp'));
 
 // rewired in test
@@ -15,10 +16,10 @@ let tar   = require('tar-fs');
  * Check if the system has a tar binary.
  * @returns {Promise.<Boolean>}
  */
-let hasBinaryTar = function () {
+let hasBinaryTar = mem(function () {
     if (process.platform === 'win32') return Promise.resolve(false);
     else return which('tar').then(() => true, () => false);
-};
+});
 
 /**
  * Extract using built-in tar binary with the node.js implementation as a fallback
