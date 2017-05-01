@@ -28,7 +28,9 @@ extrakt('path/to/archive.tar.gz', 'output/directory');
 
 ### extrakt(archive, extractTo)
 
-Extract the given `archive` to the `extractTo` directory. Returns a Promise for the extraction.
+Extract the archive at the given path `archive` to the `extractTo` directory (which will be created if it does not exist).
+
+**Returns** a Promise for the completion of the extraction.
 
 #### archive
 

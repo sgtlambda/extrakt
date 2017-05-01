@@ -3,6 +3,7 @@
 const gunzipMaybe = require('gunzip-maybe');
 const fstream     = require('fstream');
 const pify        = require('pify');
+const pathExists  = require('path-exists');
 const mkdirp      = pify(require('mkdirp'));
 
 // rewired in test
@@ -10,10 +11,13 @@ let which = pify(require('which'));
 let execa = require('execa');
 let tar   = require('tar-fs');
 
+/**
+ * Check if the system has a tar binary.
+ * @returns {Promise.<Boolean>}
+ */
 let hasBinaryTar = function () {
-    if (process.platform === 'win32')
-        return Promise.reject();
-    else return which('tar');
+    if (process.platform === 'win32') return Promise.resolve(false);
+    else return which('tar').then(() => true, () => false);
 };
 
 /**
@@ -23,11 +27,14 @@ let hasBinaryTar = function () {
  * @returns {Promise.<T>}
  */
 const extrakt = function (archive, extractTo) {
-    return hasBinaryTar()
-        .then(() => true, () => false)
-        .then(hasTar => {
-            return hasTar ? extrakt.system(archive, extractTo) : extrakt.native(archive, extractTo);
-        });
+    return Promise.all([
+        pathExists(archive),
+        hasBinaryTar()
+    ]).then(([exists, hasBinaryTar]) => {
+        if (!exists) throw new Error(`No file at ${archive}`);
+        return hasBinaryTar;
+    })
+        .then(sys => sys ? extrakt.system(archive, extractTo) : extrakt.native(archive, extractTo));
 };
 
 /**
@@ -47,6 +54,7 @@ extrakt.system = function (archive, extractTo) {
  * @returns {Promise}
  */
 extrakt.native = function (archive, extractTo) {
+    // note the tar module takes care of mkdirp'ing the destination directory
     let extract = tar.extract(extractTo);
     fstream
         .Reader(archive)

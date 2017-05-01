@@ -50,7 +50,7 @@ describe('extrakt', () => {
             });
         });
         it('should invoke .native() if tar is not found in PATH', () => {
-            hasBinaryTar.rejects(new Error('tar not found in path'));
+            hasBinaryTar.resolves(false);
             return extrakt('test/archive.tar', 'test/extract').then(() => {
                 extrakt.native.should.have.been.called;
                 extrakt.system.should.have.not.been.called;
@@ -63,6 +63,9 @@ describe('extrakt', () => {
         });
         it('should extract all the files from the .tar.gz archive', () => {
             return extrakt('test/archive.tar.gz', 'test/extract').then(() => verifyExtraction());
+        });
+        it('should reject the promise if there\'s no file at the given path', () => {
+            return extrakt('no/file/here.tar.gz', 'test/extract').should.be.rejected;
         });
     });
     describe('.native', () => {
