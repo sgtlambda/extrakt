@@ -86,7 +86,7 @@ describe('extrakt', () => {
         after(() => revert());
         it('should issue the right command', () => {
             return extrakt.system('test/archive.tar.gz', 'test/extract').then(() => {
-                execa.should.have.been.calledWith('tar', ['-xvf', 'test/archive.tar.gz', '-C', 'test/extract']);
+                execa.should.have.been.calledWith('tar', ['-xf', 'test/archive.tar.gz', '-C', 'test/extract']);
             });
         });
     });

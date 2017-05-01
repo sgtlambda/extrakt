@@ -44,7 +44,7 @@ const extrakt = function (archive, extractTo) {
  * @returns {Promise}
  */
 extrakt.system = function (archive, extractTo) {
-    return mkdirp(extractTo).then(() => execa('tar', ['-xvf', archive, '-C', extractTo]));
+    return mkdirp(extractTo).then(() => execa('tar', ['-xf', archive, '-C', extractTo]));
 };
 
 /**
