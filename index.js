@@ -5,7 +5,7 @@ const fstream     = require('fstream');
 const pify        = require('pify');
 const pathExists  = require('path-exists');
 const mem         = require('mem');
-const mkdirp      = pify(require('mkdirp'));
+const mkdirp      = require('make-dir');
 
 // rewired in test
 let which = pify(require('which'));
