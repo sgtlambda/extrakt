@@ -1,6 +1,6 @@
 # [![extrakt](media/logo.png)](https://github.com/sgtlambda/extrakt)
 
-> Extract .tar and .tar.gz using the system binary (fast!), with a javascript fallback (portable!)
+> Extract `.tar` and `.tar.gz` using the system binary (fast!), with a javascript fallback (portable!)
 
 [![Build Status][travis-image]][travis-url]
 [![Code Quality][codeclimate-image]][codeclimate-url]
