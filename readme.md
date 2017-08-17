@@ -23,7 +23,6 @@ const extrakt = require('extrakt');
 extrakt('path/to/archive.tar.gz', 'output/directory');
 ```
 
-
 ## API
 
 ### extrakt(archive, extractTo)
