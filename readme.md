@@ -1,4 +1,4 @@
-# extrakt
+# [![extrakt](media/logo.png)](https://github.com/sgtlambda/extrakt)
 
 > Extract .tar and .tar.gz using the system binary (fast!), with a javascript fallback (portable!)
 
