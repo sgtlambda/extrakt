@@ -2,6 +2,8 @@
 
 > Extract `.tar` and `.tar.gz` using the system binary (fast!), with a javascript fallback (portable!)
 
+Makes a great team with [nectar](https://github.com/sgtlambda/nectar).
+
 [![Build Status][travis-image]][travis-url]
 [![Code Quality][codeclimate-image]][codeclimate-url]
 [![Code Coverage][coveralls-image]][coveralls-url]
