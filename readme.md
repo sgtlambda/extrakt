@@ -5,7 +5,6 @@
 Makes a great team with [nectar](https://github.com/sgtlambda/nectar).
 
 [![Build Status][travis-image]][travis-url]
-[![Code Quality][codeclimate-image]][codeclimate-url]
 [![Code Coverage][coveralls-image]][coveralls-url]
 [![NPM Version][npm-image]][npm-url]
 
@@ -54,9 +53,6 @@ MIT © [sgtlambda](http://github.com/sgtlambda)
 
 [travis-image]: https://img.shields.io/travis/sgtlambda/extrakt.svg?style=flat-square
 [travis-url]: https://travis-ci.org/sgtlambda/extrakt
-
-[codeclimate-image]: https://img.shields.io/codeclimate/github/sgtlambda/extrakt.svg?style=flat-square
-[codeclimate-url]: https://codeclimate.com/github/sgtlambda/extrakt
 
 [david-image]: https://img.shields.io/david/sgtlambda/extrakt.svg?style=flat-square
 [david-url]: https://david-dm.org/sgtlambda/extrakt
