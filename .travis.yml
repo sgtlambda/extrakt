@@ -4,9 +4,3 @@ notifications:
   email: false
 node_js:
   - 'stable'
-before_script:
-  - npm run-script pretest
-script:
-  - ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- test.js
-after_script:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
