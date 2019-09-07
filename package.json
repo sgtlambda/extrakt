@@ -9,9 +9,6 @@
     "email": "janmerijnversteeg@gmail.com",
     "url": "github.com/sgtlambda"
   },
-  "engines": {
-    "node": ">=4"
-  },
   "scripts": {
     "pretest": "eslint index.js && eslint test.js",
     "test": "mocha test.js"
