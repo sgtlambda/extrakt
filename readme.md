@@ -27,7 +27,7 @@ extrakt('path/to/archive.tar.gz', 'output/directory');
 
 ### extrakt(archive, extractTo)
 
-Extract the archive at the given path `archive` to the `extractTo` directory (which will be created if it does not exist).
+Extract the archive at the given `archive` path to the `extractTo` directory.
 
 **Returns** a Promise for the completion of the extraction.
 
@@ -47,17 +47,8 @@ Destination directory
 
 MIT © [sgtlambda](http://github.com/sgtlambda)
 
-[![dependency Status][david-image]][david-url]
-[![devDependency Status][david-dev-image]][david-dev-url]
-
 [travis-image]: https://img.shields.io/travis/sgtlambda/extrakt.svg?style=flat-square
 [travis-url]: https://travis-ci.org/sgtlambda/extrakt
-
-[david-image]: https://img.shields.io/david/sgtlambda/extrakt.svg?style=flat-square
-[david-url]: https://david-dm.org/sgtlambda/extrakt
-
-[david-dev-image]: https://img.shields.io/david/dev/sgtlambda/extrakt.svg?style=flat-square
-[david-dev-url]: https://david-dm.org/sgtlambda/extrakt#info=devDependencies
 
 [npm-image]: https://img.shields.io/npm/v/extrakt.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/extrakt
